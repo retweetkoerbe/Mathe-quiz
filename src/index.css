@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom chunky base styles for kids app */
+@layer base {
+  body {
+    @apply bg-blue-50 text-slate-900 font-sans antialiased selection:bg-yellow-200;
+  }
+  h1 {
+    @apply text-3xl font-bold text-blue-600 mb-4;
+  }
+  h2 {
+    @apply text-2xl font-bold text-blue-500 mb-3;
+  }
+  button {
+    @apply cursor-pointer transition-transform active:scale-95 touch-manipulation select-none;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-xl shadow-lg text-lg;
+  }
+  .btn-secondary {
+    @apply bg-white hover:bg-slate-50 text-blue-500 font-bold py-3 px-6 rounded-xl shadow-md border-2 border-blue-100 text-lg;
+  }
+  .card {
+    @apply bg-white rounded-2xl shadow-xl p-6;
+  }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+.animate-shake {
+  animation: shake 0.4s ease-in-out;
+}
