@@ -1,16 +1,65 @@
-# React + Vite
+# Mathe Superheld 🦸‍♂️➕➖
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Eine interaktive Mathe-Lern-App für die 2. Klasse, entwickelt mit React und Vite. Die App läuft vollständig client-seitig und ist für die Nutzung auf Tablets und Desktop-PCs optimiert.
 
-Currently, two official plugins are available:
+🚀 **Live-Demo:** [https://retweetkoerbe.github.io/Mathe-quiz/](https://retweetkoerbe.github.io/Mathe-quiz/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🎮 Spielmodi
 
-## React Compiler
+### ❤️ Verliebte Zahlen
+Trainiert das schnelle Ergänzen auf 10 oder 100 (Herz-Logik).
+*   **Ziel:** Finde die fehlende Zahl, damit das Herz "ganz" wird (Summe = 10 oder 100).
+*   **Features:** Visuelles Feedback, Herz-Animationen, angepasstes Zahlenfeld.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 👣 Der Rechenweg
+Schrittweises Rechnen mit Zehnerübergang.
+*   **Strategie:** "Erst bis zum Zehner, dann den Rest".
+*   **Ablauf:** Die App führt das Kind durch die 3 Schritte (bis zum Zehner -> Rest berechnen -> Ergebnis).
+*   **Lerneffekt:** Verfestigt das Verständnis für den Zehnerübergang statt bloßem Auswendiglernen.
 
-## Expanding the ESLint configuration
+### 📏 Zahlenstrahl-Detektiv
+Schult das Mengenverständnis und die Verortung von Zahlen im Raum (0-100).
+*   **Interaktion:** Schiebe den Regler an die vermutete Stelle auf dem Zahlenstrahl.
+*   **Feedback:** "Volltreffer", "Knapp daneben" oder "Noch zu weit weg".
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠 Tech Stack
+
+*   **Framework:** [React](https://react.dev/) (v19) mit [Vite](https://vitejs.dev/)
+*   **Styling:** [Tailwind CSS](https://tailwindcss.com/) (v3)
+*   **Routing:** `react-router-dom` (HashRouter für GitHub Pages Kompatibilität)
+*   **Icons:** [Lucide React](https://lucide.dev/)
+*   **Animationen:** CSS Transitions & `canvas-confetti` für Belohnungen
+*   **Deployment:** GitHub Pages (via GitHub Actions)
+
+## 📦 Installation & Entwicklung
+
+Voraussetzung: Node.js (v18+)
+
+1.  **Repository klonen:**
+    ```bash
+    git clone https://github.com/retweetkoerbe/Mathe-quiz.git
+    cd Mathe-quiz
+    ```
+
+2.  **Abhängigkeiten installieren:**
+    ```bash
+    npm install
+    ```
+
+3.  **Lokalen Entwicklungsserver starten:**
+    ```bash
+    npm run dev
+    ```
+    Die App ist dann unter `http://localhost:5173` erreichbar.
+
+## 🚀 Deployment
+
+Das Deployment erfolgt automatisch via **GitHub Actions**, sobald auf den `main`-Branch gepusht wird.
+
+*   Workflow-Datei: `.github/workflows/deploy.yml`
+*   Build-Befehl: `npm run build` (Erstellt den `dist/` Ordner)
+*   Base-URL: Wird in `vite.config.js` dynamisch anhand des Repository-Namens gesetzt.
+
+## 📝 Lizenz
+
+Open Source - viel Spaß beim Lernen und Coden!
