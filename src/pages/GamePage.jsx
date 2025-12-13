@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { ArrowLeft, Search, Star, Trophy, ArrowRight } from 'lucide-react';
+import { Search, Star, Trophy, ArrowRight } from 'lucide-react';
 import { Button } from '../components/ui/Button';
 import { usePersistedScore } from '../hooks/usePersistedScore';
 import { getNextTask, TASK_TYPES } from '../utils/gameManager';
