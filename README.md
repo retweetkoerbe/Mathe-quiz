@@ -1,39 +1,43 @@
 # Mathe Superheld 🦸‍♂️➕➖
 
-Eine interaktive Mathe-Lern-App für die 2. Klasse, entwickelt mit React und Vite. Die App läuft vollständig client-seitig und ist für die Nutzung auf Tablets und Desktop-PCs optimiert.
+Eine interaktive Mathe-Lern-App für die 2. Klasse, entwickelt mit React und Vite. Die App stellt einen bunten Aufgaben-Mix bereit, um spielerisch Mathe zu üben.
 
 🚀 **Live-Demo:** [https://retweetkoerbe.github.io/Mathe-quiz/](https://retweetkoerbe.github.io/Mathe-quiz/)
 
-## 🎮 Spielmodi
+## 🎮 So funktioniert es
 
-### ❤️ Verliebte Zahlen
-Trainiert das schnelle Ergänzen auf 10 oder 100 (Herz-Logik).
-*   **Ziel:** Finde die fehlende Zahl, damit das Herz "ganz" wird (Summe = 10 oder 100).
-*   **Features:** Visuelles Feedback, Herz-Animationen, angepasstes Zahlenfeld.
+Drücke auf **"Jetzt üben!"** und stürze dich in den Mathe-Mix! Die App wählt zufällig Aufgaben aus drei verschiedenen Kategorien aus.
 
-### 👣 Der Rechenweg
-Schrittweises Rechnen mit Zehnerübergang.
-*   **Strategie:** "Erst bis zum Zehner, dann den Rest".
-*   **Ablauf:** Die App führt das Kind durch die 3 Schritte (bis zum Zehner -> Rest berechnen -> Ergebnis).
-*   **Lerneffekt:** Verfestigt das Verständnis für den Zehnerübergang statt bloßem Auswendiglernen.
+### 🏆 Punktesystem & Highscore
+Sammle Punkte, um deinen eigenen Rekord zu brechen!
+*   **1 Punkt:** Einfache Aufgaben (z.B. Verliebte Zahlen)
+*   **2 Punkte:** Mittlere Aufgaben (z.B. Zahlenstrahl)
+*   **3 Punkte:** Knifflige Aufgaben (z.B. Rechenweg)
 
-### 📏 Zahlenstrahl-Detektiv
-Schult das Mengenverständnis und die Verortung von Zahlen im Raum (0-100).
-*   **Interaktion:** Schiebe den Regler an die vermutete Stelle auf dem Zahlenstrahl.
-*   **Feedback:** "Volltreffer", "Knapp daneben" oder "Noch zu weit weg".
+### ❤️ Positive Fehlerkultur
+Fehler sind Helfer! Wenn mal etwas daneben geht, gibt es kein rotes "X", sondern ermutigende Hinweise ("Schau noch mal genau hin 🔍"). Es geht darum, aus Fehlern zu lernen.
+
+## 🧩 Enthaltene Aufgabentypen
+
+### Verliebte Zahlen ❤️
+Finde die fehlende Zahl, damit das Herz "ganz" wird (Ergänzen auf 10 oder 100).
+
+### Der Rechenweg 👣
+Lerne den Zehnerübergang Schritt für Schritt: "Erst bis zum Zehner, dann den Rest".
+
+### Zahlenstrahl-Detektiv 📏
+Schätze, wo eine Zahl auf dem Zahlenstrahl (0-100) liegt.
 
 ## 🛠 Tech Stack
 
 *   **Framework:** [React](https://react.dev/) (v19) mit [Vite](https://vitejs.dev/)
 *   **Styling:** [Tailwind CSS](https://tailwindcss.com/) (v3)
-*   **Routing:** `react-router-dom` (HashRouter für GitHub Pages Kompatibilität)
+*   **Routing:** `react-router-dom` (HashRouter)
 *   **Icons:** [Lucide React](https://lucide.dev/)
-*   **Animationen:** CSS Transitions & `canvas-confetti` für Belohnungen
+*   **Animationen:** `canvas-confetti` für Belohnungen
 *   **Deployment:** GitHub Pages (via GitHub Actions)
 
 ## 📦 Installation & Entwicklung
-
-Voraussetzung: Node.js (v18+)
 
 1.  **Repository klonen:**
     ```bash
@@ -50,15 +54,6 @@ Voraussetzung: Node.js (v18+)
     ```bash
     npm run dev
     ```
-    Die App ist dann unter `http://localhost:5173` erreichbar.
-
-## 🚀 Deployment
-
-Das Deployment erfolgt automatisch via **GitHub Actions**, sobald auf den `main`-Branch gepusht wird.
-
-*   Workflow-Datei: `.github/workflows/deploy.yml`
-*   Build-Befehl: `npm run build` (Erstellt den `dist/` Ordner)
-*   Base-URL: Wird in `vite.config.js` dynamisch anhand des Repository-Namens gesetzt.
 
 ## 📝 Lizenz
 
