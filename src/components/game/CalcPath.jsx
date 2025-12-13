@@ -1,42 +1,33 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { ArrowLeft, ArrowRight, CheckCircle, HelpCircle, RefreshCw } from 'lucide-react';
-import { Button } from '../components/ui/Button';
-import { Card } from '../components/ui/Card';
-import { usePersistedScore } from '../hooks/usePersistedScore';
-import { generateStepTask } from '../utils/mathUtils';
-import confetti from 'canvas-confetti';
+import { Button } from '../ui/Button';
+import { Card } from '../ui/Card';
 
-const ModeRechenweg = () => {
-  const [task, setTask] = useState(null);
+// Dumb Component für den Rechenweg
+export const CalcPath = ({ task, onSolve, onMistake }) => {
   const [step, setStep] = useState(1); // 1: Zum Zehner, 2: Rest addieren, 3: Ergebnis
   const [input1, setInput1] = useState(''); // Eingabe für Schritt 1 (diffToTen)
   const [input2, setInput2] = useState(''); // Eingabe für Schritt 2 (rest)
   const [input3, setInput3] = useState(''); // Eingabe für Schritt 3 (result)
-  const [feedback, setFeedback] = useState(null); // 'correct', 'error', null
-  const [score, setScore] = usePersistedScore('score_rechenweg', 0);
+  const [localFeedback, setLocalFeedback] = useState(null);
 
+  // Reset bei neuer Aufgabe
   useEffect(() => {
-    startNewTask();
-  }, []);
-
-  const startNewTask = () => {
-    setTask(generateStepTask());
     setStep(1);
     setInput1('');
     setInput2('');
     setInput3('');
-    setFeedback(null);
-  };
+    setLocalFeedback(null);
+  }, [task]);
 
   const handleCheckStep1 = () => {
     const val = parseInt(input1, 10);
     if (val === task.diffToTen) {
       setStep(2);
-      setFeedback(null);
+      setLocalFeedback(null);
     } else {
-      setFeedback('error');
-      setTimeout(() => setFeedback(null), 1000);
+      setLocalFeedback('error1');
+      onMistake();
+      setTimeout(() => setLocalFeedback(null), 1000);
     }
   };
 
@@ -44,54 +35,29 @@ const ModeRechenweg = () => {
     const val = parseInt(input2, 10);
     if (val === task.rest) {
       setStep(3);
-      setFeedback(null);
+      setLocalFeedback(null);
     } else {
-      setFeedback('error');
-      setTimeout(() => setFeedback(null), 1000);
+      setLocalFeedback('error2');
+      onMistake();
+      setTimeout(() => setLocalFeedback(null), 1000);
     }
   };
 
   const handleCheckStep3 = () => {
     const val = parseInt(input3, 10);
     if (val === task.result) {
-      setStep(4); // Fertig
-      setScore(s => s + 1);
-      confetti({
-        particleCount: 100,
-        spread: 70,
-        origin: { y: 0.6 },
-        colors: ['#22c55e', '#4ade80', '#86efac'] // Grüne Farben
-      });
+      setStep(4);
+      onSolve();
     } else {
-      setFeedback('error');
-      setTimeout(() => setFeedback(null), 1000);
+      setLocalFeedback('error3');
+      onMistake();
+      setTimeout(() => setLocalFeedback(null), 1000);
     }
   };
 
-  if (!task) return null;
-
   return (
-    <div className="flex flex-col items-center p-4 max-w-4xl mx-auto min-h-screen">
-      
-      {/* Header */}
-      <div className="w-full flex items-center justify-between mb-8">
-        <Link to="/">
-          <Button variant="secondary" className="!py-2 !px-4">
-            <ArrowLeft size={20} /> Zurück
-          </Button>
-        </Link>
-        <h1 className="text-2xl md:text-3xl font-bold text-green-600 text-center flex-1">
-          Der Rechenweg
-        </h1>
-        <div className="w-[100px] flex justify-end">
-           <div className="bg-white px-4 py-2 rounded-xl shadow text-green-600 font-bold border-2 border-green-100">
-             ★ {score}
-           </div>
-        </div> 
-      </div>
-
-      {/* Main Task Display */}
-      <Card className="w-full max-w-2xl border-4 border-green-100 bg-green-50/30 mb-8 relative overflow-visible">
+    <div className="flex flex-col items-center w-full">
+      <Card className="w-full max-w-2xl border-4 border-green-100 bg-green-50/30 relative overflow-visible">
          <div className="text-center mb-8">
             <span className="text-gray-500 text-sm uppercase tracking-wider font-bold">Die Aufgabe</span>
             <div className="text-5xl font-bold text-slate-700 mt-2 flex items-center justify-center gap-4">
@@ -119,7 +85,7 @@ const ModeRechenweg = () => {
                           type="number" 
                           value={input1}
                           onChange={(e) => setInput1(e.target.value)}
-                          className={`w-16 p-2 text-center border-2 rounded-lg outline-none focus:border-green-500 ${feedback === 'error' ? 'border-red-400 bg-red-50 animate-shake' : 'border-slate-200'}`}
+                          className={`w-16 p-2 text-center border-2 rounded-lg outline-none focus:border-green-500 ${localFeedback === 'error1' ? 'border-red-400 bg-red-50 animate-shake' : 'border-slate-200'}`}
                           autoFocus
                         />
                     ) : (
@@ -149,7 +115,7 @@ const ModeRechenweg = () => {
                               type="number" 
                               value={input2}
                               onChange={(e) => setInput2(e.target.value)}
-                              className={`w-16 p-2 text-center border-2 rounded-lg outline-none focus:border-green-500 ${feedback === 'error' ? 'border-red-400 bg-red-50 animate-shake' : 'border-slate-200'}`}
+                              className={`w-16 p-2 text-center border-2 rounded-lg outline-none focus:border-green-500 ${localFeedback === 'error2' ? 'border-red-400 bg-red-50 animate-shake' : 'border-slate-200'}`}
                               autoFocus
                             />
                         ) : (
@@ -180,7 +146,7 @@ const ModeRechenweg = () => {
                                   type="number" 
                                   value={input3}
                                   onChange={(e) => setInput3(e.target.value)}
-                                  className={`w-24 p-2 text-center border-2 rounded-lg outline-none focus:border-green-500 ${feedback === 'error' ? 'border-red-400 bg-red-50 animate-shake' : 'border-slate-200'}`}
+                                  className={`w-24 p-2 text-center border-2 rounded-lg outline-none focus:border-green-500 ${localFeedback === 'error3' ? 'border-red-400 bg-red-50 animate-shake' : 'border-slate-200'}`}
                                   autoFocus
                                 />
                                 <Button variant="success" className="ml-2 !py-2 !px-6" onClick={handleCheckStep3}>
@@ -195,27 +161,8 @@ const ModeRechenweg = () => {
             )}
 
          </div>
-         
-         {/* Success State */}
-         {step === 4 && (
-             <div className="mt-8 flex justify-center animate-bounce">
-                 <Button onClick={startNewTask} variant="primary" className="!text-xl !py-4 !px-12 bg-green-500 hover:bg-green-600">
-                     Nächste Aufgabe <ArrowRight className="ml-2" />
-                 </Button>
-             </div>
-         )}
-
       </Card>
-
-      {/* Erklärung/Hilfe Visualisierung (optional) */}
-      <div className="mt-8 text-center text-slate-400 text-sm max-w-lg">
-         Tipp: Rechne immer erst bis zum nächsten Zehner ({task.nextTen}).<br/>
-         Der Rest kommt dann einfach dazu!
-      </div>
-
     </div>
   );
 };
-
-export default ModeRechenweg;
 

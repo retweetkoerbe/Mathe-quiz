@@ -1,9 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout';
 import Home from './pages/Home';
-import ModeLiebesZahlen from './pages/ModeLiebesZahlen';
-import ModeRechenweg from './pages/ModeRechenweg';
-import ModeZahlenstrahl from './pages/ModeZahlenstrahl';
+import GamePage from './pages/GamePage';
 import NotFound from './pages/NotFound';
 
 function App() {
@@ -11,9 +9,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
-        <Route path="liebes-zahlen" element={<ModeLiebesZahlen />} />
-        <Route path="rechenweg" element={<ModeRechenweg />} />
-        <Route path="zahlenstrahl" element={<ModeZahlenstrahl />} />
+        <Route path="play" element={<GamePage />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
