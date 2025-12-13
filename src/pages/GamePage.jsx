@@ -79,11 +79,12 @@ const GamePage = () => {
       
       {/* Top Bar: Navigation & Stats */}
       <div className="w-full flex items-center justify-between mb-6 sticky top-0 bg-blue-50/90 backdrop-blur-sm z-10 py-2 border-b border-blue-100">
-        <Link to="/">
-          <Button variant="secondary" className="!py-2 !px-4 text-sm">
-            <ArrowLeft size={16} className="mr-1" /> Pause
-          </Button>
-        </Link>
+        <div className="flex-1">
+             <div className="flex flex-col leading-none">
+                <span className="text-[10px] uppercase text-blue-300 font-bold">Mathe</span>
+                <span className="font-bold text-blue-500">Superheld</span>
+             </div>
+        </div>
         
         <div className="flex gap-4">
            <div className="flex items-center gap-2 bg-white px-3 py-1 rounded-xl shadow-sm text-yellow-600 border border-yellow-100">
