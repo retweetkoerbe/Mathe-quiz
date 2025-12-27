@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 
 export const Button = ({ children, variant = 'primary', className = '', ...props }) => {

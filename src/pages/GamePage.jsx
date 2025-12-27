@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from 'react';
+'use client';
+
+import React, { useState, useEffect, useCallback } from 'react';
 import { Search, Star, Trophy, ArrowRight } from 'lucide-react';
 import { Button } from '../components/ui/Button';
 import { usePersistedScore } from '../hooks/usePersistedScore';
@@ -18,10 +20,15 @@ const GamePage = () => {
   const [feedbackMessage, setFeedbackMessage] = useState('');
   const [streak, setStreak] = useState(0);
 
+  const loadNextTask = useCallback(() => {
+    setTask(getNextTask());
+    setShowFeedback(false);
+  }, []);
+
   // Start new game session
   useEffect(() => {
     loadNextTask();
-  }, []);
+  }, [loadNextTask]);
 
   // Update Highscore
   useEffect(() => {
@@ -29,11 +36,6 @@ const GamePage = () => {
       setHighScore(score);
     }
   }, [score, highScore, setHighScore]);
-
-  const loadNextTask = () => {
-    setTask(getNextTask());
-    setShowFeedback(false);
-  };
 
   const handleCorrect = (bonusPoints = 0) => {
     const points = (task.points || 1) + bonusPoints;
@@ -53,7 +55,7 @@ const GamePage = () => {
     });
   };
 
-  const handleMistake = (type = 'default') => {
+  const handleMistake = () => {
     setStreak(0);
     setShowFeedback('mistake');
     
