@@ -1,3 +1,5 @@
+'use client';
+
 // Simple hook for persistent score
 import { useState, useEffect } from 'react';
 
